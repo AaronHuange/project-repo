@@ -13,7 +13,8 @@
     "dev": "rollup -w -c",
     "build:types": "tsc -b ./tsconfig.json",
     "build": "npm run build:types && rollup -c",
-    "prepublish": "pnpm version && pnpm build"
+    "prepublish": "pnpm version && pnpm build",
+    "publish-to-lx": "yarn build && npm publish --registry=https://nexus.weiwenjia.com/repository/npm-l"
   },
   "keywords": [
     "utils"
