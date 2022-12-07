@@ -11,7 +11,6 @@ export class EventRegister {
     if (!LxTrack.config?.heatmap?.enable) return;
 
     document.addEventListener('click', e => {
-      // @ts-ignore
       const target = bubbleDispatch(e.target);
       if (!target) return;
       AutoCollectField.clickEventField(target)
