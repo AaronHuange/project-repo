@@ -1,5 +1,5 @@
-import {EventRegister} from "@/event/EventRegister";
 import AutoCollectField from "@utils/AutoCollectField";
+import {EventRegister} from "@/event/EventRegister";
 
 export interface ConfigProps {
   logConfig?: {
