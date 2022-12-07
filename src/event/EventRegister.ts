@@ -12,7 +12,6 @@ export class EventRegister {
 
     document.addEventListener('click', e => {
       // @ts-ignore
-      window.track = e;
       const target = bubbleDispatch(e.target);
       if (!target) return;
       AutoCollectField.clickEventField(target)
