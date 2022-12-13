@@ -18,10 +18,8 @@ export default class AutoCollectField {
     const dateStr = date.toLocaleString('chinese', {hour12: false});
     // @ts-ignore
     const _page_id = pageIdMapping[currentPath] || currentPath;
-    const _version = require("/package.json")?.version;
     return {
       _page_id,
-      _version,
       _memory: `${(_memory / 1024 / 1024).toFixed(0)}MB`,
       _url: location.href,
       _title: document.title,
