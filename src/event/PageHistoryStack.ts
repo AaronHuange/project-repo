@@ -24,9 +24,9 @@ export default class PageHistoryStack {
     // 进入新页面
     PageHistoryStack.pageStack.push(currentPageId);
     // 前一页面离开事件
-    AutoCollectField.trackPageLeaveEventField();
+    AutoCollectField.trackPageLeaveEventField(previousPageId);
     // 前以页面停留时间计算
-    AutoCollectField.trackPageStayEventField();
+    AutoCollectField.trackPageStayEventField(previousPageId);
     // 新页面进入事件
     AutoCollectField.trackPvEventField(previousPageId);
   }

@@ -18,8 +18,10 @@ export default class AutoCollectField {
     const dateStr = date.toLocaleString('chinese', {hour12: false});
     // @ts-ignore
     const _page_id = pageIdMapping[currentPath] || currentPath;
+    const _version = require("/package.json")?.version;
     return {
       _page_id,
+      _version,
       _memory: `${(_memory / 1024 / 1024).toFixed(0)}MB`,
       _url: location.href,
       _title: document.title,
@@ -85,11 +87,15 @@ export default class AutoCollectField {
   }
 
   /** 页面退出事件,字段整理 */
-  static trackPageLeaveEventField() {
+  static trackPageLeaveEventField(previousPageId: string) {
+    const {pageIdMapping = {}} = LxTrack.config || {};
+    // @ts-ignore
+    const _page_id = pageIdMapping[previousPageId] || previousPageId;
     const data = {
       _event: 'pageLeave',
       ...AutoCollectField.commonField(),
       ...(AutoCollectField.replaceField || {}),
+      _page_id,
     };
     sendLog(data);
   }
@@ -97,13 +103,17 @@ export default class AutoCollectField {
   private static enterTime = 0;
 
   /** 页面停留时间计算事件时,字段整理 */
-  static trackPageStayEventField() {
+  static trackPageStayEventField(previousPageId: string) {
     // 计算页面停留
+    const {pageIdMapping = {}} = LxTrack.config || {};
+    // @ts-ignore
+    const _page_id = pageIdMapping[previousPageId] || previousPageId;
     const data = {
       _event: 'pageStay',
       _stay_time: ((new Date().getTime() - AutoCollectField.enterTime) / 1000).toFixed(0),
       ...AutoCollectField.commonField(),
       ...(AutoCollectField.replaceField || {}),
+      _page_id,
     };
     sendLog(data);
   }
