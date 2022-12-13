@@ -18,8 +18,15 @@ export class EventRegister {
   }
 
   static registerPageSwitchEvent() {
+    this.registerHashRouterEvent();
     this.registerHistoryRouterEvent();
     this.registerNewPageRouterEvent();
+  }
+
+  private static registerHashRouterEvent() {
+    window.addEventListener('hashchange', (hashEvent) => {
+      window.dispatchEvent(new Event('enterAfter'));
+    });
   }
 
   private static registerHistoryRouterEvent() {
