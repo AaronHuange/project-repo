@@ -20,7 +20,7 @@ module.exports = {
         },
     ],
     methods: {
-        onParseTemplateFinished: async (execute, clearConsole, npm, yarn) => {
+        onParseTemplateFinished: async ({execute, clearConsole, npm, yarn}) => {
             await yarn(['install']);
         },
     }
