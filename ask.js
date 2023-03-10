@@ -7,6 +7,11 @@ module.exports = {
             question: '是否使用微信'
         },
         {
+            type: 'YN',
+            field: 'useTrack',
+            question: '是否接入自动埋点'
+        },
+        {
             type: 'radio',
             field: 'radio',
             question: '测试单选询问功能',
