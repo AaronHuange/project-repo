@@ -1,4 +1,4 @@
-fwefeiwfjiewfjsldf
+fwefeiwfjiewfjsldf <%= check %>
 fewfjlwef
 wfjefejwf
 fweljfew
@@ -10,7 +10,8 @@ f
 ewf
 w
 fwe
+<%= useWechat %>
 f
-wef
+wen
 wejfweljfew
-fwewfwe
+fwewfwe <%= radio %>

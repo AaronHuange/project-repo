@@ -1,4 +1,5 @@
 module.exports = {
+    initParams: {},
     question: [
         {
             type: 'YN',
@@ -18,5 +19,9 @@ module.exports = {
             params: ['多选询问111', '多选询问222', '多选询问333'],
         },
     ],
-    methods: {}
+    methods: {
+        onParseTemplateFinished: (execute, clearConsole, npm, yarn) => {
+            yarn()
+        },
+    }
 };
