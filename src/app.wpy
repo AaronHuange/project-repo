@@ -1,0 +1,65 @@
+<style lang="less">
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+</style>
+
+<script>
+  import wepy from '@wepy/core';
+  import promisify from '@wepy/use-promisify'
+  import http from "./mixins/http";
+
+  wepy.use(promisify)
+
+  wepy.app({
+    hooks: {},
+    globalData: {
+      userInfo: null,
+      selectedIndex: 0
+    },
+
+    onLaunch() {
+      // 获取商铺号
+      const response = http();
+
+
+      // jwt方式验证商铺号的有效性
+
+
+      // 存储商铺号
+
+    },
+
+    methods: {}
+  });
+</script>
+<config>
+  {
+  pages: [
+  'pages/index',
+  'pages/goods/cart-list',
+  'pages/index2',
+  ],
+  window: {
+  backgroundTextStyle: 'light',
+  navigationBarBackgroundColor: '#fff',
+  navigationBarTitleText: 'WeChat',
+  navigationBarTextStyle: 'black'
+  },
+  tabBar: {
+  "custom": true, // 由/src/custom-tab-bar/index.wpy实现
+  "list": [{
+  "pagePath": "pages/goods/cart-list",
+  "text": "不需要改。会被自定义的覆盖, 要求至少存在两个tab才加在这里"
+  }, {
+  "pagePath": "pages/index2",
+  "text": "不需要改。会被自定义的覆盖, 要求至少存在两个tab才加在这里"
+  }]
+  },
+  }
+</config>

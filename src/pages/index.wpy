@@ -1,0 +1,59 @@
+<template>
+  <div class="container">
+    template1111
+    <button @tap="getUserInfo">获取用户信息</button>
+  </div>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+  import {store} from '@/store/index';
+  import http from '@/mixins/http';
+  import {mapState, mapActions} from '@wepy/x';
+  import {makePhoneCall} from "@/mixins/utils";
+
+  wepy.page({
+    store,
+    hooks: {},
+    computed: {
+      ...mapState('user', [
+        'userInfo',
+        'accessToken'
+      ])
+    },
+    methods: {
+      ...mapActions('user', [
+        'login'
+      ]),
+      async test() {
+        let response = await http('POST', 'test')
+      },
+      async getUserInfo() {
+        makePhoneCall({contact_phone: '15026466775'});
+
+      }
+    },
+    data: {},
+
+    async onLoad() {
+      console.log('onLoad onLoadonLoadonLoadonLoad', this.accessToken)
+      if (!this.accessToken) {
+        this.login().then(res => {
+          console.log('onLoad xxxxx', res)
+          this.test()
+        })
+      } else {
+        console.log('onLoad xxx')
+      }
+      console.log('userInfo::', store.state.user.userInfo)
+    }
+  });
+</script>
+<config>
+  {
+  navigationBarTitleText: 'xxx',
+  usingComponents: {
+  "van-button": "~@/components/vant/button/index"
+  }
+  }
+</config>
