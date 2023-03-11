@@ -36,16 +36,11 @@
     data: {},
 
     async onLoad() {
-      console.log('onLoad onLoadonLoadonLoadonLoad', this.accessToken)
       if (!this.accessToken) {
         this.login().then(res => {
-          console.log('onLoad xxxxx', res)
           this.test()
         })
-      } else {
-        console.log('onLoad xxx')
       }
-      console.log('userInfo::', store.state.user.userInfo)
     }
   });
 </script>

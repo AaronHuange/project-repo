@@ -1,5 +1,5 @@
 <template>
-  <van-tabbar 
+  <van-tabbar
     active="{{ selected }}">
       <van-tabbar-item wx:for="{{list}}" wx:key="index" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab" icon="{{ item.icon }}">{{item.text}}</van-tabbar-item>
   </van-tabbar>
@@ -16,7 +16,7 @@
     data: {
       //selected: 0,
       list: [{
-        pagePath: "/pages/goods/cart-list",
+        pagePath: "/pages/cart-list",
         icon: "home-o",
         text: "TAB1"
       }, {

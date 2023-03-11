@@ -42,7 +42,7 @@
   {
   pages: [
   'pages/index',
-  'pages/goods/cart-list',
+  'pages/cart-list',
   'pages/index2',
   ],
   window: {
@@ -54,7 +54,7 @@
   tabBar: {
   "custom": true, // 由/src/custom-tab-bar/index.wpy实现
   "list": [{
-  "pagePath": "pages/goods/cart-list",
+  "pagePath": "pages/cart-list",
   "text": "不需要改。会被自定义的覆盖, 要求至少存在两个tab才加在这里"
   }, {
   "pagePath": "pages/index2",
