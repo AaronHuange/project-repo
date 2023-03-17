@@ -5,7 +5,7 @@ module.exports = {
       type: 'YN',
       field: 'useVuex',
       question: '添加通过wepyx管理数据'
-    },
+    }
     // {
     //   type: 'YN',
     //   field: 'useHttp',
