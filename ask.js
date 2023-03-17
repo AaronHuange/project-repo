@@ -1,5 +1,8 @@
 module.exports = {
-  initParams: {},
+  initParams: {
+    type: 'type',
+    module: 'module',
+  },
   question: [
     {
       type: 'YN',
