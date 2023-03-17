@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@aliyun-sls/web-track-browser@^0.0.3":
-  version "0.0.3"
-  resolved "https://nexus.weiwenjia.com/repository/registry/@aliyun-sls/web-track-browser/-/web-track-browser-0.0.3.tgz#be203a4c00474dd40e4a233c8a961394c471fc71"
-  integrity sha512-RYJaZN2A8TKTHsem29B/8IRvjBk4ow0IjrzsTlEfxJtUoRIgtKpI6pEgvtI2LKUqN1/vEz6WzzFA+zttMSN3Fw==
-
 "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.18.6":
   version "7.18.6"
   resolved "https://nexus.weiwenjia.com/repository/registry/@babel/code-frame/-/code-frame-7.18.6.tgz#3b25d38c89600baa2dcc219edfa88a74eb2c427a"

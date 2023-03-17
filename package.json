@@ -1,7 +1,7 @@
 {
-  "name": "lx-track",
-  "version": "1.0.6",
-  "description": "lx-track",
+  "name": "<%= projectName =%>",
+  "version": "1.0.0",
+  "description": "",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/types/index.d.ts",
@@ -13,18 +13,16 @@
     "dev": "rollup -w -c",
     "build:types": "tsc -b ./tsconfig.json",
     "build": "npm run build:types && rollup -c",
-    "prepublish": "pnpm version && pnpm build",
     "publish-to-lx": "yarn build && npm publish --registry=https://nexus.weiwenjia.com/repository/npm-l"
   },
   "keywords": [
     "utils"
   ],
-  "author": "fengzhao",
+  "author": "",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@aliyun-sls/web-track-browser": "^0.0.3",
     "@babel/preset-env": "^7.20.2",
     "@rollup/plugin-commonjs": "^23.0.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
