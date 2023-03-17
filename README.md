@@ -1,4 +1,4 @@
-<%= projectName =%>
+<%= projectName %>
 ==========
 ## 发布到私服过程
 
