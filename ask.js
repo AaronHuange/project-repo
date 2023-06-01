@@ -23,6 +23,12 @@ module.exports = {
       question: '需要连接数据库'
     },
     {
+      where: 'allParams.SQL',
+      type: 'input',
+      field: 'SQL_HOST',
+      question: '数据库地址'
+    },
+    {
       type: 'YN',
       field: 'REDIS',
       question: '需要连接Redis'
@@ -33,7 +39,7 @@ module.exports = {
       question: '是否打印日志到控制台'
     },
     {
-      type: 'INPUT',
+      type: 'input',
       field: 'PORT',
       question: '使用端口号(8080)'
     },
