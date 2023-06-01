@@ -6,8 +6,8 @@ const favicon = require('serve-favicon');
 const session = require('express-session');
 const cookie = require('cookie-parser');
 const cors = require('cors'); // 允许跨域
-<% if (TYPE !== 'HTTP接口项目') { %>
-<%= const expressWs = require('express-ws') %>
+<% if(TYPE !== 'HTTP接口项目') { %>
+<%= "const expressWs = require('express-ws')" %>
 <% } %>
 const { getCommandPath, existFile } = require('./lib/file/fileutil');
 const fs = require('fs'); // 引入 WebSocket 包
@@ -15,7 +15,7 @@ const fs = require('fs'); // 引入 WebSocket 包
 const myapp = myexpress();
 myapp.use(logger('dev')); // 控制台打印访问日志
 <% if (TYPE !== 'HTTP接口项目') { %>
-<%= expressWs(myapp); // myapp需要expressWs一次,router中配置websocket路由时也要expressWs一次 %>
+<%= 'expressWs(myapp); // myapp需要expressWs一次,router中配置websocket路由时也要expressWs一次' %>
 <% } %>
 myapp.use(cookie()); // 启用cookie
 myapp.use(session({ // 启用session：使用 resp.session.data 、resp.session.data.xxx = any 、 resp.session.data = {}
