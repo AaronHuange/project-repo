@@ -23,7 +23,7 @@ module.exports = {
       question: '需要连接数据库'
     },
     {
-      where: 'allParams.SQL',
+      where: 'allParams["SQL"]',
       type: 'input',
       field: 'SQL_HOST',
       question: '数据库地址'
