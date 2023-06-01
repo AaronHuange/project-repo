@@ -9,15 +9,23 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
+    <%_ if (CORS) { -%>
+    <%- '"cors": "^2.8.5",' %>
+    <%_ } -%>
     "express": "^4.18.1",
     "express-session": "^1.17.2",
     <%_ if (TYPE !== 'HTTP接口项目') { -%>
     <%- '"express-ws": "^5.0.2",' %>
     <%_ } -%>
-    "interfacerequest": "^0.0.22",
-    "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
+    <%_ if (HTTP_TOOL) { -%>
+    <%- '"interfacerequest": "^0.0.22",' %>
+    <%_ } -%>
+    <%_ if (CONSOLE_LOG) { -%>
+    <%- '"morgan": "^1.10.0",' %>
+    <%_ } -%>
+    <%_ if (SQL) { -%>
+    <%- '"mysql": "^2.18.1",' %>
+    <%_ } -%>
     "pk-wzq-ai": "^1.0.2",
     "random-js": "^1.0.8",
     "redis": "^4.2.0",

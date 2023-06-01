@@ -14,23 +14,33 @@ module.exports = {
     },
     {
       type: 'YN',
-      field: 'useHttp',
-      question: '添加get|post方法请求服务器接口工具类'
+      field: 'HTTP_TOOL',
+      question: '自带请求接口工具类'
     },
     {
       type: 'YN',
-      field: 'useTrack',
-      question: '接入页面和事件自动埋点'
+      field: 'SQL',
+      question: '需要连接数据库'
+    },
+    {
+      type: 'YN',
+      field: 'REDIS',
+      question: '需要连接Redis'
+    },
+    {
+      type: 'YN',
+      field: 'CONSOLE_LOG',
+      question: '是否打印日志到控制台'
+    },
+    {
+      type: 'INPUT',
+      field: 'PORT',
+      question: '使用端口号(8080)'
     },
     {
       type: 'YN',
       field: 'useVant',
       question: '导入vant/weapp组件库'
-    },
-    {
-      type: 'YN',
-      field: 'usePageTemplate',
-      question: '添加单个页面或组件的模板代码'
     },
     {
       type: 'check',
