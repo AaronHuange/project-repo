@@ -1,17 +1,21 @@
 const ErrorCode = {
-  1000: {
+  PARAMS_MISS: {
     code: '1000',
     msg: '参数缺失'
   },
-  1001: {
+  USERINFO_ERROR: {
     code: '1001',
     msg: '用户名或密码错误'
   },
-  1002: {
+  USER_EXIST: {
     code: '1002',
     msg: '用户已存在'
   },
-  996: '登录失效'
+  SQL_ERROR: {
+    code: '1003',
+    msg: '数据库异常'
+  },
+  NEED_LOGIN: '登录失效'
 }
 
 const BaseResponse = {

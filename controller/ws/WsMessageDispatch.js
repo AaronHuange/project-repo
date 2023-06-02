@@ -27,7 +27,7 @@ class WsMessageDispatch {
       WsMessageHandler.sendByErrorMsg(ws, msgObj?.type, '无法处理');
       return;
     }
-    func(msgObj.userId, msgObj, ws, req);
+    func(msgObj.userId, 1, ws, req);
   }
 }
 

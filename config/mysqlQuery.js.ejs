@@ -1,15 +1,13 @@
 const mysql = require('mysql');
-
 const config = {
-  host: 'localhost',
-  port: '3306',
-  user: 'root',
-  password: '1234432u',
-  database: 'wuziqi',
+  host: '<%- SQL_HOST %>',
+  port: '<%- SQL_PORT %>',
+  user: '<%- SQL_USER %>',
+  password: '<%- SQL_PASSWORD %>',
+  database: '<%- SQL_DATABASE %>',
 };
 console.log('创建mysql连接池：全局只执行一次');
 let pool = mysql.createPool(config);
-
 module.exports = (sql, paramsArray, callback) => {
   pool.getConnection((err, connection) => { // 获取连接的回调
     if (err) {

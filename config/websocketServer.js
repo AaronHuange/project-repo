@@ -9,10 +9,8 @@ module.exports = (router) => {
     ws.on('message', function (msg) {
       let msgJson = msg;
       if (typeof msg === 'string') {
-        console.log('string', msg);
         try {
           msgJson = JSON.parse(msg);
-          console.log('msgJson', msgJson);
         } catch (e) {
           console.log('异常格式消息,不转JSON', msg);
         }

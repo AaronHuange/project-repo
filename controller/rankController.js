@@ -9,7 +9,7 @@ sqlSearch = (req, resp) => {
       RedisManager.setValue('wzq-rank', result);
       BaseResponse.success(resp, result.map((bean) => sqlBean.filter(bean, 'id')));
     } else {
-      BaseResponse.fail(resp, ErrorCode['1001']);
+      BaseResponse.fail(resp, ErrorCode.SQL_ERROR);
     }
   });
 };
