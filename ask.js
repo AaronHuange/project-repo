@@ -37,6 +37,13 @@ module.exports = {
     },
     {
       where: 'return params.SQL',
+      type: 'input',
+      field: 'SQL_USER',
+      question: '请输入数据库用户名',
+      defaultValue: 'root'
+    },
+    {
+      where: 'return params.SQL',
       type: 'password',
       field: 'SQL_PASSWORD',
       question: '请输入数据库密码',
