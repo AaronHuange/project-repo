@@ -113,6 +113,9 @@ module.exports = {
       'userController.js',
       '/controller/base/'
     ],
+    '!REDIS': [
+      'RedisManager.js.ejs',
+    ],
   },
   methods: {
     onParseTemplateFinished: async ({execute, clearConsole, npm, yarn}) => {
