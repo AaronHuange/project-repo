@@ -45,8 +45,8 @@ const myapp = myexpress();
 <%- "myapp.use(bodyParser.urlencoded({ extended: false })) // 配置post方式的body解析(否则req.body拿不到)" %>
 <%- "myapp.use(bodyParser.json()); // 配置post方式的body转为json" %>
 <%_ } -%>
-<%_ if (TYPE !== 'Websocket项目') { -%>
 myapp.use(router); // 先匹配接口
+<%_ if (TYPE !== 'Websocket项目') { -%>
 <%- "myapp.use(myexpress.static(__dirname + '/static')); // 设置可直接访问的静态目录, 再匹配静态资源" %>
 <%- "// myapp.use(favicon(__dirname + '/resource/images/jb.png')); // 配置网页的favicon(纯接口项目建议不配置)" %>
 <%_ } -%>
