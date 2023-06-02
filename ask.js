@@ -97,11 +97,11 @@ module.exports = {
     '!params.SLQ': [
       'mysqlQuery.js.ejs',
     ],
-    'TYPE==="HTTP接口项目"': [
+    'params.TYPE==="HTTP接口项目"': [
       'websocketServer.js',
       '/controller/ws/'
     ],
-    'TYPE==="Websocket项目"': [
+    'params.TYPE==="Websocket项目"': [
       'rankController.js',
       'userController.js',
       '/controller/base/'
