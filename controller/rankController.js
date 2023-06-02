@@ -1,6 +1,6 @@
 const mysqlQuery = require('../config/mysqlQuery')
 const { BaseResponse, ErrorCode } = require('./base/BaseResponse');
-const sqlBean = require('../entities/sqlbean/SqlBean');
+const sqlBean = require('../lib/SqlBean');
 const RedisManager = require('../lib/redis/RedisManager');
 
 sqlSearch = (req, resp) => {

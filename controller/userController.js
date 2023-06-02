@@ -1,5 +1,5 @@
 const mysqlQuery = require('../config/mysqlQuery.js');
-const sqlBean = require('../entities/sqlbean/SqlBean.js');
+const sqlBean = require('../lib/SqlBean.js');
 const jwtManager = require('../lib/jwt/JwtManager.js');
 const { BaseResponse } = require('./base/BaseResponse.js');
 const { ErrorCode } = require('./base/BaseResponse');

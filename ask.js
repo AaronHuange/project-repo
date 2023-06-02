@@ -111,9 +111,10 @@ module.exports = {
     'params.TYPE==="Websocket项目"': [
       'rankController.js',
       'userController.js',
-      '/controller/base/'
+      '/controller/base/',
+      'BaseResponse.js',
     ],
-    '!REDIS': [
+    '!params.REDIS': [
       'RedisManager.js.ejs',
     ],
   },
