@@ -94,7 +94,7 @@ module.exports = {
     },
   ],
   exInclude: {
-    '!params.SLQ': [
+    '!params.SQL': [
       'mysqlQuery.js.ejs',
     ],
     'params.TYPE==="HTTP接口项目"': [
