@@ -1,5 +1,7 @@
 module.exports = {
-  initParams: {},
+  initParams: {
+    projectType: 'node',
+  },
   question: [
     {
       type: 'radio', // 非check
@@ -21,7 +23,7 @@ module.exports = {
     {
       type: 'input',
       field: 'PORT',
-      question: '请输入数据库端口号',
+      question: '启动端口号',
       defaultValue: '3300'
     },
     {
@@ -65,7 +67,7 @@ module.exports = {
     },
   ],
   exInclude: {
-    'params.projectName': [ // 判断必定为true
+    'params.projectType': [ // 判断必定为true
       'cache.interceptor.ts',
       'recover.subscriber.ts',
       'soft_remove.subscriber.ts',
