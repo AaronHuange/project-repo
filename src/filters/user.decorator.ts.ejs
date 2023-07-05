@@ -9,8 +9,8 @@ import { GqlContextRequest } from '@/filters/paas-auth.guard';
 <%_ } -%>
 
 export const User = createParamDecorator((data: unknown, context: ExecutionContext): ICloudUserInfo => {
-  let currentUser: ICloudUserInfo;
   <%_ if (TYPE === 'GraphQL') { -%>
+  let currentUser: ICloudUserInfo;
   if (context.getType<GqlContextType>() === 'graphql') {
     const ctx = GqlExecutionContext.create(context);
     const req = ctx.getContext<GqlContextRequest<{
@@ -33,14 +33,14 @@ export const User = createParamDecorator((data: unknown, context: ExecutionConte
   <%_ } -%>
   <%_ if (TYPE !== 'GraphQL') { -%>
   const request = context.switchToHttp()
-    getRequest<
+    .getRequest<
       FastifyRequest<{
         Headers: {
           currentUser?: ICloudUserInfo;
         };
       }>
     >();
-  currentUser = request.headers.currentUser;
+  const { currentUser } = request.headers;
   <%_ } -%>
   if (!currentUser) {
     throw new UnauthorizedException();
