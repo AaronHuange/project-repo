@@ -1,0 +1,11 @@
+<%_ if (!params.projectName) { -%>
+import { Component } from './component.model';
+import { Form } from './form.model';
+import { FormPermission } from './form_permission.model';
+import { FormTemplate } from './form_template.model';
+import { Theme } from './theme.model';
+import { App } from '@/models/app.model';
+import { FormStore } from '@/models/form_store.model';
+<%_ } -%>
+
+export default [<%_ if (!params.projectName) { -%>Form, FormPermission, Component, Theme, FormTemplate, App, FormStore<%_ } -%>];

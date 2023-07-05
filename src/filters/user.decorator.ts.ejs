@@ -1,0 +1,49 @@
+import { createParamDecorator, ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import { FastifyRequest } from 'fastify';
+<%_ if (TYPE === 'GraphQL') { -%>
+import { GqlContextType, GqlExecutionContext } from '@nestjs/graphql';
+<%_ } -%>
+import { ICloudUserInfo } from '@/modules/api/type';
+<%_ if (TYPE === 'GraphQL') { -%>
+import { GqlContextRequest } from '@/filters/paas-auth.guard';
+<%_ } -%>
+
+export const User = createParamDecorator((data: unknown, context: ExecutionContext): ICloudUserInfo => {
+  let currentUser: ICloudUserInfo;
+  <%_ if (TYPE === 'GraphQL') { -%>
+  if (context.getType<GqlContextType>() === 'graphql') {
+    const ctx = GqlExecutionContext.create(context);
+    const req = ctx.getContext<GqlContextRequest<{
+      Headers: {
+        currentUser?: ICloudUserInfo;
+      };
+    }>>();
+    currentUser = req.req.headers.currentUser;
+  } else {
+    const request = context.switchToHttp()
+      .getRequest<
+        FastifyRequest<{
+          Headers: {
+            currentUser?: ICloudUserInfo;
+          };
+        }>
+      >();
+    currentUser = request.headers.currentUser;
+  }
+  <%_ } -%>
+  <%_ if (TYPE !== 'GraphQL') { -%>
+  const request = context.switchToHttp()
+    getRequest<
+      FastifyRequest<{
+        Headers: {
+          currentUser?: ICloudUserInfo;
+        };
+      }>
+    >();
+  currentUser = request.headers.currentUser;
+  <%_ } -%>
+  if (!currentUser) {
+    throw new UnauthorizedException();
+  }
+  return currentUser;
+});

@@ -1,0 +1,66 @@
+import * as helmet from '@fastify/helmet';
+import { Logger, ValidationPipe } from '@nestjs/common';
+import * as compress from '@fastify/compress';
+import { NestFactory, Reflector } from '@nestjs/core';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
+import { AppModule } from '@/app.module';
+import { HttpExceptionFilter } from '@/filters/exception.filter';
+import { ErrorInterceptor } from './filters/error.interceptor';
+import { LoggingInterceptor } from './filters/logging.interceptor';
+import { TransformInterceptor } from './filters/transform.interceptor';
+
+async function bootstrap() {
+  const urlPrefix = 'api/v1';
+  const adapter = new FastifyAdapter();
+  // 安全防护
+  // @ts-ignore
+  adapter.register(helmet);
+  // 压缩请求
+  // @ts-ignore
+  adapter.register(compress);
+  // 限制访问频率，多实例建议走redis
+  // @ts-ignore
+  adapter.register(import('@fastify/rate-limit'), {
+    max: 100,
+    timeWindow: 6000, // 一分钟
+  });
+  const nestApp = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    adapter,
+    {
+      logger: process.env.NODE_ENV === 'production' ? ['warn', 'error'] : ['log', 'error', 'warn', 'debug'],
+    },
+  );
+  // 全局使用winston
+  // const nestWinston = nestApp.get('NestWinston');
+  // console.info('nestWinston', nestWinston);
+  // nestApp.useLogger(nestWinston);
+  // 设置全局前缀
+  nestApp.setGlobalPrefix(urlPrefix);
+  // 捕获全局错误
+  nestApp.useGlobalFilters(new HttpExceptionFilter());
+  // class-validator效验
+  nestApp.useGlobalPipes(new ValidationPipe());
+  // 添加拦截器
+  nestApp.useGlobalInterceptors(
+    new TransformInterceptor(new Reflector()),
+    new ErrorInterceptor(new Reflector()),
+    new LoggingInterceptor(),
+  );
+
+  <%_ if (CORS) { -%>
+  nestApp.enableCors();
+  <%_ } -%>
+  // 监听服务端口
+  await nestApp.listen(process.env.PORT || <%- PORT %>, '0.0.0.0');
+  return nestApp;
+}
+
+bootstrap()
+  .then(() => {
+    const logger = new Logger('Main');
+    logger.warn(`Listen 127.0.0.1:${process.env.PORT} NodeEnv: ${process.env.NODE_ENV || 'development'}`);
+  });
