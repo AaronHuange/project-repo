@@ -2,7 +2,7 @@ module.exports = {
   initParams: {},
   question: [
     {
-      type: 'check',
+      type: 'radio', // 非check
       field: 'packageTool',
       question: '使用什么工具安装依赖包',
       params: ['npm', 'yarn', 'pnpm', 'cnpm'],
@@ -19,7 +19,6 @@ module.exports = {
       question: '添加允许跨域配置'
     },
     {
-      where: 'return params.SQL',
       type: 'input',
       field: 'PORT',
       question: '请输入数据库端口号',
