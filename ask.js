@@ -1,6 +1,5 @@
 module.exports = {
   initParams: {
-    projectType: 'node',
   },
   question: [
     {
@@ -67,7 +66,7 @@ module.exports = {
     },
   ],
   exInclude: {
-    'params.projectType': [ // 判断必定为true
+    'params.projectName': [ // 判断必定为true
       'cache.interceptor.ts',
       'recover.subscriber.ts',
       'soft_remove.subscriber.ts',
