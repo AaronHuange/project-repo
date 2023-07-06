@@ -85,6 +85,13 @@ module.exports = {
     '!params.monitor': [
       'pc-status-monitor.ts',
     ],
+    '!params.SQL': [
+      '/config/index.ts.ejs',
+      '/config/orm-listeners/',
+      '/entities/sqlbean/',
+      '/migrations/',
+      '/utils/queryPagination.ts',
+    ],
   },
   methods: {
     onParseTemplateFinished: async ({execute, clearConsole, npm, yarn}) => {

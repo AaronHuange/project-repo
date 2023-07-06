@@ -41,7 +41,9 @@ export default {
     port: process.env.DATABASE_URL_PORT,
     database: process.env.DATABASE_URL_DATABASE,
     username: process.env.DATABASE_URL_USERNAME,
+    <%_ if (SQL) { -%>
     password: process.env.DATABASE_URL_PASSWORD || '<%- SQL_PASSWORD %>',
+    <%_ } -%>
     entities: sqlbeans,
     synchronize: false,
     migrations,
