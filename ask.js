@@ -27,6 +27,11 @@ module.exports = {
     },
     {
       type: 'YN',
+      field: 'monitor',
+      question: '是否添加性能监控'
+    },
+    {
+      type: 'YN',
       field: 'SQL',
       question: '是否需要连接数据库'
     },
@@ -35,13 +40,14 @@ module.exports = {
       type: 'input',
       field: 'SQL_HOST',
       question: '请输入数据库地址',
-      defaultValue: 'localhost'
+      defaultValue: '127.0.0.1'
     },
     {
       where: 'return params.SQL',
       type: 'input',
       field: 'SQL_DATABASE',
-      question: '请输入数据库名'
+      question: '请输入数据库名',
+      defaultValue: 'lxcloud_form',
     },
     {
       where: 'return params.SQL',
@@ -67,24 +73,17 @@ module.exports = {
   ],
   exInclude: {
     'params.projectName': [ // 判断必定为true
-      'cache.interceptor.ts',
-      'recover.subscriber.ts',
-      'soft_remove.subscriber.ts',
-      'interfaces.ts',
-      'app.model.ts',
-      'component.model.ts',
-      'form.model.ts',
-      'form_permission.model.ts',
-      'form_store.model.ts',
-      'form_template.model.ts',
-      'theme.model.ts',
-      'user.model.ts',
+      'pnpm-lock.yaml',
+      '/graphql/'
     ],
     'params.TYPE!=="GraphQL"': [
       '/graphql/filter/',
       '/graphql/types/',
       'BaseModel.ts',
       'pagination.ts',
+    ],
+    '!params.monitor': [
+      'pc-status-monitor.ts',
     ],
   },
   methods: {

@@ -7,4 +7,9 @@ export class Ping {
   ping() {
     return 'pong';
   }
+
+  @Get('/pri/ping')
+  pingPri() {
+    return 'pong';
+  }
 }

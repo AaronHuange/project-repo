@@ -1,14 +1,31 @@
-## 自定义表单服务
-
+### 框架
 项目由***nestjs+fastify+typeorm*** 搭建
 
 ### 版本要求
+node 18以上、 pnpm 8.2.0以上
 
-node 18以上
-pnpm 8.2.0以上
+### 文档
+- nestjs中文文档：https://docs.nestjs.cn/
+- nestjs的graphql文档：https://docs.nestjs.com/graphql/quick-start
+- typeorm中文文档：https://typeorm.bootcss.com/
+
+### 说明
+本地模拟get请求：
+```shell
+curl http://127.0.0.1:3305/xxx
+```
+本地模拟post请求：
+```shell
+```
+本地模拟put请求：
+```shell
+```
+本地模拟delete请求：
+```shell
+```
+
 
 ### 安装依赖
-
 * pnpm install
 
 ### 创建配置文件
