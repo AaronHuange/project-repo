@@ -46,7 +46,7 @@ async function bootstrap() {
   <%_ if (CORS) { -%>
   nestApp.enableCors(); // 允许跨域
   <%_ } -%>
-  await nestApp.listen(process.env.PORT || <%- SQL_PORT %>, '0.0.0.0'); // 监听服务端口
+  await nestApp.listen(process.env.PORT || <%- PORT %>, '0.0.0.0'); // 监听服务端口
   return nestApp;
 }
 
