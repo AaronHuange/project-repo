@@ -1,0 +1,68 @@
+import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { HttpModule } from '@nestjs/axios';
+import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
+<%_ if (monitor) { -%>
+import { StatusMonitorModule } from 'nest-status-monitor';
+import statusMonitorConfig from './config/pc-status-monitor';
+<%_ } -%>
+
+import models from './entities/sqlbean';
+import config from '@/config';
+
+import { Ping } from '@/modules/ping/ping';
+import { AuthMiddleware } from '@/middlewares/AuthMiddleware';
+<%_ if (TYPE === 'GraphQL') { -%>
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLDirective } from 'graphql/type';
+import { DirectiveLocation } from 'graphql/language';
+import { DateScalar } from '@/graphql/scalars/date.scalar';
+import { JSONScalar } from '@/graphql/scalars/json.scalar';
+import { JsonObjectScalar } from '@/graphql/scalars/json_object.scalar';
+<%_ } -%>
+
+@Module({
+  imports: [
+    HttpModule, // 核心模块，用于与外部HTTP服务的通信。
+    TypeOrmModule.forFeature(models),
+    TypeOrmModule.forRootAsync({
+      useFactory: () => ({...config.typeOrm} as TypeOrmModuleAsyncOptions),
+    }),
+    <%_ if (monitor) { -%>
+    StatusMonitorModule.setUp(statusMonitorConfig),
+    <%_ } -%>
+    <%_ if (TYPE === 'GraphQL') { -%>
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      path: 'test/graphql',
+      autoSchemaFile: 'schema.gql',
+      buildSchemaOptions: {
+        directives: [
+          new GraphQLDirective({
+            name: 'upper',
+            locations: [DirectiveLocation.FIELD_DEFINITION],
+          }),
+        ],
+      },
+    }),
+    <%_ } -%>
+  ],
+  controllers: [
+    Ping
+  ],
+  providers: [
+    <%_ if (TYPE === 'GraphQL') { -%>
+    // graphql scalar
+    DateScalar,
+    JSONScalar,
+    JsonObjectScalar,
+    <%_ } -%>
+  ]
+})
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AuthMiddleware)
+      .forRoutes('(.*)/pri/(.*)'); // 在这里指定需要校验登录的路由，* 表示通配
+  }
+}

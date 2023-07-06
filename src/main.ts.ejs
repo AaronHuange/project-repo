@@ -1,0 +1,57 @@
+import * as helmet from '@fastify/helmet';
+import { Logger, ValidationPipe } from '@nestjs/common';
+import * as compress from '@fastify/compress';
+import { NestFactory, Reflector } from '@nestjs/core';
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import { LoggingInterceptor } from '@/interceptors/LoggingInterceptor';
+import { ResponseFormatInterceptor } from '@/interceptors/ResponseFormatInterceptor';
+import { ErrorInterceptor } from '@/interceptors/ErrorInterceptor';
+import { HttpExceptionFilter } from '@/filters/HttpExceptionFilter';
+import { AppModule } from '@/app.module';
+
+async function bootstrap() {
+  const urlPrefix = 'api/v1'; //  对RUSTful接口生效的前缀
+  const adapter = new FastifyAdapter();
+  // @ts-ignore
+  <%_ if (monitor) { -%>
+  adapter.register(helmet, { // 安全防护
+    contentSecurityPolicy: false,
+  });
+  <%_ } -%>
+  <%_ if (!monitor) { -%>
+    adapter.register(helmet); // 安全防护
+  <%_ } -%>
+  // @ts-ignore
+  adapter.register(compress); // 压缩请求
+  // @ts-ignore
+  adapter.register(import('@fastify/rate-limit'), { // 限制访问频率
+    max: 100,
+    timeWindow: 6000, // 一分钟
+  });
+  const nestApp = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    adapter,
+    {
+      logger: process.env.NODE_ENV === 'production' ? ['warn', 'error'] : ['log', 'error', 'warn', 'debug'],
+    },
+  );
+  nestApp.setGlobalPrefix(urlPrefix); // 设置全局前缀
+  nestApp.useGlobalPipes(new ValidationPipe()); // class-validator效验
+  nestApp.useGlobalFilters(new HttpExceptionFilter()); // 捕获全局错误
+  nestApp.useGlobalInterceptors( // 添加拦截器
+    new LoggingInterceptor(), // 打印日志
+    new ErrorInterceptor(new Reflector()), // 捕获服务中发生的未catch异常，使用统一的HttpException抛出
+    new ResponseFormatInterceptor(new Reflector()),  // 格式化响应数据
+  );
+  <%_ if (CORS) { -%>
+  nestApp.enableCors(); // 允许跨域
+  <%_ } -%>
+  await nestApp.listen(process.env.PORT || <%- SQL_PORT %>, '0.0.0.0'); // 监听服务端口
+  return nestApp;
+}
+
+bootstrap()
+  .then(() => {
+    const logger = new Logger('Main');
+    logger.warn(`Listen 127.0.0.1:${ process.env.PORT } NodeEnv: ${ process.env.NODE_ENV || 'development' }`);
+  });
