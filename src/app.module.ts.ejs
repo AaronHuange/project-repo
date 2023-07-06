@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
-<%_ if (!SQL) { -%>
+<%_ if (SQL) { -%>
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 <%_ } -%>
 <%_ if (monitor) { -%>
@@ -8,7 +8,7 @@ import { StatusMonitorModule } from 'nest-status-monitor';
 import statusMonitorConfig from './config/pc-status-monitor';
 <%_ } -%>
 
-<%_ if (!SQL) { -%>
+<%_ if (SQL) { -%>
 import models from './entities/sqlbean';
 import config from '@/config';
 <%_ } -%>
@@ -28,7 +28,7 @@ import { JsonObjectScalar } from '@/graphql/scalars/json_object.scalar';
 @Module({
   imports: [
     HttpModule, // 核心模块，用于与外部HTTP服务的通信。
-    <%_ if (!SQL) { -%>
+    <%_ if (SQL) { -%>
     TypeOrmModule.forFeature(models),
     TypeOrmModule.forRootAsync({
       useFactory: () => ({...config.typeOrm} as TypeOrmModuleAsyncOptions),
