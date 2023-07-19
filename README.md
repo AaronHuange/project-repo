@@ -1,4 +1,3 @@
-# 创建通过LXUI
 - react > 17
 - tailwindcss > 3.0
 

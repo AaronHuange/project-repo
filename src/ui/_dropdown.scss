@@ -1,0 +1,36 @@
+.dropdown {
+  @apply absolute left-0 top-full bg-white text-base text-left z-50 list-none rounded
+  drop-shadow-lg w-auto border border-solid border-gray-200 cursor-default max-h-96 overflow-y-auto;
+  .dropdown-item {
+    white-space: nowrap;
+    @apply hover:bg-gray-100 m-1 rounded flex items-center text-gray-700 px-2 py-1.5 text-sm cursor-pointer;
+
+    &.disabled {
+      @apply opacity-75 cursor-not-allowed;
+    }
+
+    &.active {
+      @apply bg-gray-100 text-primary-500;
+    }
+  }
+
+  .divide {
+    height: 1px;
+    @apply border-b border-gray-200;
+  }
+}
+
+.dropdown-up {
+  top: auto;
+  @apply bottom-full mb-1;
+}
+
+.dropdown-right {
+  left: auto;
+  @apply right-0;
+}
+
+.dropdown-left {
+  right: auto;
+  @apply left-0;
+}

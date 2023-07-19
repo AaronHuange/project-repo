@@ -1,25 +1,18 @@
-// const colors = require('tailwindcss/colors');
-function withOpacity(variableName) {
-  return ({ opacityValue }) => {
-    if (opacityValue) {
-      return `rgba(var(${variableName}), ${opacityValue})`;
-    }
-    return `rgb(var(${variableName}))`;
-  };
-}
+const colors = require('tailwindcss/colors');
+
 const themeColors = {
+  ...colors,
   primary: {
-    50: withOpacity('--lxy-primary-50'),
-    100: withOpacity('--lxy-primary-100'),
-    200: withOpacity('--lxy-primary-200'),
-    300: withOpacity('--lxy-primary-300'),
-    400: withOpacity('--lxy-primary-400'),
-    500: withOpacity('--lxy-primary-500'),
-    550: withOpacity('--lxy-primary-550'),
-    600: withOpacity('--lxy-primary-600'),
-    700: withOpacity('--lxy-primary-700'),
-    800: withOpacity('--lxy-primary-800'),
-    900: withOpacity('--lxy-primary-900'),
+    50: '#FAF5FF',
+    100: '#FAE8FF',
+    200: '#F5D0FE',
+    300: '#F0ABFC',
+    400: '#E879F9',
+    500: '#D946EF',
+    600: '#C026D3',
+    700: '#A21CAF',
+    800: '#86198F',
+    900: '#701A75',
   },
   orange: {
     50: '#FFF9F6',

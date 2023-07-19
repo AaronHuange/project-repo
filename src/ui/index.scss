@@ -1,0 +1,49 @@
+@import "./tailwind";
+@import "index.base";
+
+@layer utilities {
+  // @import "./preflight";
+  @import "./_button";
+  @import "./_button_group";
+  @import "./_dropdown";
+  @import "./_modal";
+}
+
+@layer base {
+  @import "_base";
+  html {
+    font-family: PingFang SC, -apple-system, BlinkMacSystemFont Segoe UI, Microsoft YaHei Roboto Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  }
+
+  body {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+* {
+  outline: 0;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.__react_component_tooltip {
+  padding: 0.3rem 0.5rem !important;
+  line-height: 1.2rem;
+  font-weight: normal;
+  max-width: 16rem;
+  z-index: 10100 !important;
+  @apply break-all;
+  &.place-top, &.place-bottom, &.place-left, &.place-right {
+    &:before {
+      background: transparent !important;
+    }
+  }
+}

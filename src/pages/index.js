@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Example() {
+function Home() {
   return (
     <div className="flex space-x-2 w-full">
       <button type="button" className="btn btn-primary mr-2">主要按钮</button>
@@ -9,4 +9,4 @@ function Example() {
   );
 }
 
-export default Example;
+export default Home;

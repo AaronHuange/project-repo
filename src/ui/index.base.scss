@@ -1,0 +1,27 @@
+.__react_component_tooltip {
+  padding: 0.3rem 0.5rem !important;
+  line-height: 1.2rem;
+  font-weight: normal;
+  max-width: 16rem;
+  z-index: 10100 !important;
+  @apply break-all;
+}
+
+.input {
+  @apply block px-3 py-1.5 text-base font-normal text-gray-700 bg-white
+  bg-clip-padding border border-solid border-gray-300 rounded m-0
+  focus:text-gray-700 focus:bg-white focus:border-primary-500 focus:outline-none;
+
+  &:disabled {
+    @apply bg-gray-100 text-gray-500;
+  }
+
+  &-error {
+    @apply border-red-400;
+  }
+
+}
+
+input {
+  @apply bg-transparent;
+}

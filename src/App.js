@@ -1,12 +1,13 @@
 import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import '@/ui/index.scss';
 
-const Example = lazy(() => import('./example'));
+const Home = lazy(() => import('./pages/index'));
 
 function App() {
   return (
     <Routes>
-      <Route path="/*" element={<Example />} />
+      <Route path="/*" element={ <Home /> } />
     </Routes>
   );
 }

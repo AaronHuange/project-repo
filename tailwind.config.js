@@ -7,7 +7,7 @@ const colors = require('./config/colors');
 
 const defaultConfig = {
   content: ['./src/**/*.{js,jsx,ts,tsx,mdx}', './public/index.html'], // 5.6M 到 50k 的强大提升
-  important: '.pkui',
+  important: '.pk-ui',
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {

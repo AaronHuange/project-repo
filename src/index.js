@@ -3,16 +3,23 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import reportWebVitals from './reportWebVitals';
+import { RootProvider } from '@/provider/RootContext';
+import '@/lib/es_polifill';
 
 const App = lazy(() => import('./App'));
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Suspense fallback={<div className="progress" />}>
-        <App />
-      </Suspense>
+      <RootProvider value={ { container } }>
+        <Suspense fallback={ <div className="progress" /> }>
+          <div id="root-content" className="min-h-screen">
+            <App />
+          </div>
+        </Suspense>
+      </RootProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
