@@ -1,0 +1,23 @@
+dependencies {
+    implementation "com.auth0:java-jwt:3.10.2"
+}
+
+apply plugin: 'maven'
+
+uploadArchives {
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+            repository(url: MAVEN_REPO_RELEASE__GROUP_URL) {
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+            }
+            pom.project {
+                version "0.0.1"
+                artifactId "sso"
+                groupId GROUP_ID
+                packaging TYPE
+                description '单点登录'
+            }
+        }
+    }
+}

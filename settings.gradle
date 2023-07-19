@@ -1,0 +1,4 @@
+rootProject.name = 'demo'
+include ':common'
+include ':sso'
+include 'example'

@@ -1,0 +1,112 @@
+buildscript {
+    ext.kotlin_version = '1.5.0'
+    ext {
+        //定义一个变量，统一规定springboot的版本
+        springBootVersion = '2.0.5.RELEASE'
+        springCloudVersion = 'Finchley.SR1'
+    }
+    repositories {
+//        maven { url 'http://192.168.0.105:8081/repository/pkyingyu-spring-group/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+        maven {
+            credentials {
+                username 'plC54k'
+                password 'S0tsxltU3w'
+            }
+            url MAVEN_REPO_RELEASE__GROUP_URL
+        }
+        maven {
+            credentials {
+                username 'plC54k'
+                password 'S0tsxltU3w'
+            }
+            url 'https://repo.rdc.aliyun.com/repository/129053-snapshot-OiMwNB/'
+        }
+    }
+
+    dependencies {
+        //用来打包
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0"
+    }
+}
+apply plugin: 'kotlin'
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    group 'com.pkyingyu.mp'
+    version '1.0-SNAPSHOT'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+//        maven { url 'http://192.168.0.105:8081/repository/pkyingyu-spring-group/' }
+        mavenCentral()
+    }
+    //指定编码格式
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+}
+
+//设定当前模块项目中的配置
+//compile具有依赖传递性，就是说如果A依赖B，B又依赖C(A->B->C)
+// 。那么使用compile引入依赖的时候，A也会依赖到C。
+// 如果不需要传递性，使用implementation这个引入依赖即可
+subprojects {
+    jar.enabled=true
+    group 'com.pkyingyu.mp'
+    version '1.0-SNAPSHOT'
+    dependencies {
+        implementation "org.springframework.boot:spring-boot-starter-web"
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+        //System.out.println("project::" + project.name)
+        if (!["sso"].contains(project.name)) {
+            compile project(":sso")
+            implementation "com.auth0:java-jwt:3.10.2"
+        }
+
+        if (!["common", "sso"].contains(project.name)) {
+            compile project(":common")
+        }
+    }
+
+    configure([compileKotlin, compileTestKotlin]) {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+
+}
+repositories {
+    mavenCentral()
+    maven {
+        credentials {
+            username 'plC54k'
+            password 'S0tsxltU3w'
+        }
+        url MAVEN_REPO_RELEASE__GROUP_URL
+    }
+    maven {
+        credentials {
+            username 'plC54k'
+            password 'S0tsxltU3w'
+        }
+        url 'https://repo.rdc.aliyun.com/repository/129053-snapshot-OiMwNB/'
+    }
+}
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+}
+configure([compileKotlin, compileTestKotlin]) {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+

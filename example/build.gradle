@@ -1,0 +1,24 @@
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:2.3.7.RELEASE"
+    implementation "mysql:mysql-connector-java:8.0.22"
+    implementation "org.flywaydb:flyway-core" // 不提供版本，不然会报错
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': "com.pkyingyu.mp.example.ExampleApplication"
+    }
+    from {
+        //添加依懒到打包文件
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+//不能在这里点击运行，会执行全部的 publishJar 任务, 需要在右侧Gradle选择具体的模块运行该任务
+task publishJar {
+    dependsOn 'bootJar' //在执行publishApk时，会自动先执行bootJar
+    doLast {
+        def proc = (project.projectDir.absolutePath + "/docker/publish.sh").execute([], new File(project.projectDir.absolutePath + "/docker/"))
+        proc.waitForProcessOutput(System.out, System.err)
+    }
+}

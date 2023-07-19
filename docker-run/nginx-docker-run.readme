@@ -1,0 +1,55 @@
+虽然不配置nginx也可以请求，但是需要每次都配置防火墙策略，比较麻烦，不够自动化。
+所以采用如下自动化方案：
+
+docker中启动nginx容器:
+下面方案依据：
+1. 由于nginx会把 /etc/nginx/nginx.conf 作为主配置
+2. /etc/nginx/nginx.conf 在配置端口和代理时，会导入 include /etc/nginx/conf.d/*.conf; 下的所有配置
+3. 主要目的是把需要配置的代理,往 /etc/nginx/conf.d/ 目录中添加
+4. 然后重启nginx即可
+5. 注意：当 /etc/nginx/conf.d/ 下没有任何配置时,nginx启动的容器只会处于 Created 状态,而不是UP状态。
+6: 注意：当设置容器卷时：容器内部有的文件结构，需要在宿主也有相同的文件结构，否则创建容器阶段就会失败。
+
+先准备好 /root/dockerData/nginx/nginx.conf 文件，然后修改里面的include 目录就行了
+docker run --name nginx -p 80:80 \
+-v /root/dockerData/nginx/nginx.conf:/etc/nginx/nginx.conf \
+-v /root/dockerData/nginx/conf.d:/etc/nginx/conf.d \
+-v /root/dockerData/nginx/log:/var/log/nginx \
+-v /root/dockerData/nginx/html:/usr/share/nginx/html \
+-d nginx:1.24.0
+
+#################### 每次打包需要做的事情 #####################
+上面需要往 /etc/nginx/conf.d/ 目录添加的文件格式如下：
+server {
+    listen       80;
+    server_name  _;
+
+    access_log off;
+
+    location /pkyingyu/pub/word_get/ {
+        proxy_pass http://localhost:8032/;
+        proxy_connect_timeout 10s;
+        proxy_read_timeout 10s;
+        proxy_send_timeout 10s;
+    }
+
+    location /pkyingyu/pri/word_get/ {
+        proxy_pass http://localhost:8032/;
+        proxy_connect_timeout 10s;
+        proxy_read_timeout 10s;
+        proxy_send_timeout 10s;
+    }
+
+    location / {
+       root   /usr/share/nginx/html/build; # 要写容器里面的目录，
+       # index定义的是首页
+       index  index.html;
+       # try_files  / /index.html;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+

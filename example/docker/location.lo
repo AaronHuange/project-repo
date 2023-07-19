@@ -1,0 +1,15 @@
+    location /pkyingyu/pub/smartMemory/ {
+       # 这里不能写 localhost或127.0.0.1，需要写局域网ip(推荐),或外网ip。否则只会在容器内部找
+       proxy_pass http://10.0.8.14:8033;
+       proxy_connect_timeout 10s;
+       proxy_read_timeout 10s;
+       proxy_send_timeout 10s;
+    }
+
+    location /pkyingyu/pri/smartMemory/ {
+       # 这里不能写 localhost或127.0.0.1，需要写局域网ip(推荐),或外网ip。否则只会在容器内部找
+       proxy_pass http://10.0.8.14:8033;
+       proxy_connect_timeout 10s;
+       proxy_read_timeout 10s;
+       proxy_send_timeout 10s;
+   }

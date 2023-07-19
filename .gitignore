@@ -1,0 +1,8 @@
+.gradle
+.idea
+build
+out
+/*/docker/app.jar
+/*/docker/application.properties
+/*/docker/application.yml
+/*/docker/banner.txt
