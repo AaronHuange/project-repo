@@ -15,6 +15,8 @@ public class BaseSqlBean {
     @GeneratedValue(generator = "system_uuid")
     @GenericGenerator(name = "system_uuid", strategy = "uuid")
     protected String id;
+    @Column(name = "create_by")
+    private String createBy; // 所有数据都应该有对应的创建人
     @Column(name = "create_time")
     private Date createTime;
     @Column(name = "update_time")
@@ -26,6 +28,14 @@ public class BaseSqlBean {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
     }
 
     public Date getCreateTime() {
