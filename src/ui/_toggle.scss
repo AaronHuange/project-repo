@@ -1,0 +1,63 @@
+.toggle {
+  @apply relative inline-block align-middle select-none transition duration-200 ease-in;
+  min-width: 2.5rem;
+
+  &.disabled{
+    input, .toggle-label{
+      @apply cursor-not-allowed #{!important};
+    }
+  }
+  .toggle-checkbox {
+    @apply absolute block w-5 h-5 m-0.5 rounded-full bg-white text-white appearance-none cursor-pointer shadow-md border-0 focus:ring-0 focus:ring-offset-0;
+
+    &:checked {
+      @apply right-0 border-primary-400;
+      right: 0;
+
+      & + .toggle-label {
+        @apply bg-primary-400 pl-2 pr-7 text-white;
+      }
+    }
+  }
+
+  .toggle-label {
+    @apply block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer text-sm pl-7 pr-2 pt-0.5 text-gray-700;
+  }
+
+  &.toggle-sm {
+    min-width: 2rem;
+
+    .toggle-checkbox {
+      @apply h-4 w-4;
+
+      &:checked {
+        & + .toggle-label {
+          @apply pr-5;
+        }
+      }
+    }
+
+    .toggle-label {
+      @apply h-5 pl-5 pr-0;
+    }
+
+  }
+
+  &.toggle-xs {
+    min-width: 1.5rem;
+
+    .toggle-checkbox {
+      @apply h-3 w-3;
+
+      &:checked {
+        & + .toggle-label {
+          @apply pr-3;
+        }
+      }
+    }
+
+    .toggle-label {
+      @apply h-4 pl-3;
+    }
+  }
+}

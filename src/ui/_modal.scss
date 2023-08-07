@@ -6,11 +6,11 @@
     display: none;
   }
 
-  &.modal-alert {
-    .modal-dialog {
-      max-width: 32rem;
-    }
-  }
+  //&.modal-alert {
+  //  .modal-dialog {
+  //    max-width: 32rem;
+  //  }
+  //}
 
   .modal-button-close {
     @apply p-1.5 rounded-md text-gray-700 hover:bg-gray-100;
@@ -20,7 +20,7 @@
   }
 
   .modal-dialog {
-    @apply relative w-full max-w-lg h-full;
+    @apply relative w-full h-full;
   }
 
   .modal-content {

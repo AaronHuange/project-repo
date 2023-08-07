@@ -48,7 +48,7 @@ function DefaultModal({
       />
 
       <div className="modal-dialog h-full flex flex-col justify-center">
-        <div className="modal-content w-full" style={{ maxWidth: '80vw', width: contentWidth }}>
+        <div className="modal-content w-full no-scrollbar" style={{ maxWidth: '80vw', maxHeight: '80vh', width: contentWidth }}>
           <div className="flex items-center justify-between px-5 py-3 rounded-t dark:bg-dark-400 dark:border-b dark:border-b-dark-500">
             <h3 className="font-semibold text-lg dark:text-dark-900">{title}</h3>
             <button

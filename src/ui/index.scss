@@ -7,6 +7,7 @@
   @import "./_button_group";
   @import "./_dropdown";
   @import "./_modal";
+  @import "./_toggle";
 }
 
 @layer base {
@@ -44,6 +45,20 @@
   &.place-top, &.place-bottom, &.place-left, &.place-right {
     &:before {
       background: transparent !important;
+    }
+  }
+}
+
+.edit-home-wrap {
+  @apply py-4 px-2 pb-5;
+  .button-wrap {
+    @apply w-full flex flex-row mt-5;
+    .publish {
+      @apply bg-primary-900 flex-1 text-white text-center p-2 ml-1 mr-2 rounded-md;
+    }
+
+    .look {
+      @apply bg-primary-900 flex-1 text-white text-center p-2 mr-1 ml-2 rounded-md;
     }
   }
 }

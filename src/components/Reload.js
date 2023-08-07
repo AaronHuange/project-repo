@@ -44,7 +44,7 @@ function Reload({
   //
   return (
     <>
-      { completed && trigged && <IoCheckmark className="w-4 h-4"/> }
+      { completed && trigged && <IoCheckmark className="w-4 h-4" /> }
       { (!completed || !trigged) && (
         <Tooltip overlay="重载数据" prefixCls="lx-tooltip" placement="right">
           <RiRefreshLine
