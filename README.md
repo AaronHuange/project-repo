@@ -1,4 +1,4 @@
-# 建议使用Taro的版本
+# 废弃：建议使用Taro的版本
 
 # wepy-template
 
