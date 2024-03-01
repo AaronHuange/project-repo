@@ -1,3 +1,5 @@
+# 建议使用Taro的版本
+
 # wepy-template
 
 基于 wepy 的小程序开发模板，此项目为了减少每次新项目的基础代码工作量，此项目 UI 使用 [youzan/vant-weapp](https://github.com/youzan/vant-weapp)
