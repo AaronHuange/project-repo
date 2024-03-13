@@ -1,8 +1,8 @@
 {
-  "name": "exhibition-wechat",
+  "name": "<%= projectName %>",
   "version": "1.0.0",
   "private": true,
-  "description": "展会落地页小程序",
+  "description": "<%= description %>",
   "templateInfo": {
     "name": "taro-hooks@2x",
     "typescript": false,

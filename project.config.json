@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "exhibition-wechat",
-  "description": "展会落地页",
+  "projectname": "<%= projectName %>",
+  "description": "<%= description %>",
   "appid": "wxe90087cdac763407",
   "setting": {
     "urlCheck": true,

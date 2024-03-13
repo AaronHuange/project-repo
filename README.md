@@ -1,5 +1,5 @@
 # mini-program
-展会落地页 - 小程序（基于Taro）
+小程序（基于Taro）
 
 # 依赖
 - 基础库: [taro](https://docs.taro.zone/docs/apis/about/desc)
