@@ -1,8 +1,8 @@
 {
-  "name": "testProjectName",
+  "name": "<%= projectName %>",
   "version": "1.0.0",
   "private": true,
-  "description": "",
+  "description": "<%= description %>",
   "templateInfo": {
     "name": "taro-hooks@2x",
     "typescript": false,

@@ -1,5 +1,5 @@
 const config = {
-  projectName: 'testProjectName',
+  projectName: '<%= projectName %>',
   date: '2023-9-24',
   designWidth: 375,
   deviceRatio: {
