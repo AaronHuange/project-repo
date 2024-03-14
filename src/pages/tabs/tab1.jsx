@@ -14,7 +14,7 @@ const Index = () => {
 
   return (
     <View>
-      <Button openType='share' className='mx-5 text-red-500 bg-black'>
+      <Button openType='share' className='mx-[22px] px-2.5 text-red-500 bg-black'>
         Tab1
       </Button>
     </View>
