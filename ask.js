@@ -14,6 +14,11 @@ module.exports = {
       defaultValue: ''
     },
   ],
+  exInclude: {
+    '1 === 1': [
+      'PkCli-ReName.sh'
+    ]
+  },
   methods: {
     onParseTemplateFinished: async ({execute, clearConsole, npm, yarn}) => {
       await yarn(['install']);
