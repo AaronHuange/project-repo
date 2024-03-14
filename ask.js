@@ -4,7 +4,13 @@ module.exports = {
     {
       type: 'input',
       field: 'description',
-      question: '请输入项目描述',
+      question: '请输入项目描述: ',
+      defaultValue: ''
+    },
+    {
+      type: 'input',
+      field: 'appId',
+      question: '请输入小程序appid: ',
       defaultValue: ''
     },
   ],
