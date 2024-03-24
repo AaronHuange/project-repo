@@ -3,7 +3,7 @@ module.exports = {
     NODE_ENV: '"development"',
   },
   defineConstants: {
-    HOST: 'XX',
+    HOST: '"http://127.0.0.1/"',
   },
   mini: {},
   h5: {},
