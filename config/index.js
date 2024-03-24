@@ -30,6 +30,9 @@ const config = {
       exclude: ['@nutui/nutui-react-taro', '@nutui/icons-react-taro']
     }
   },
+  alias:{
+    '@': path.resolve(__dirname, '../src'),
+  },
   cache: {
     enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
@@ -40,7 +43,9 @@ const config = {
     postcss: {
       pxtransform: {
         enable: true,
-        config: {},
+        config: {
+          selectorBlackList: ['nut-'] // TODO 根据问题判断是否需要添加
+        }
       },
       url: {
         enable: true,
@@ -53,6 +58,14 @@ const config = {
         config: {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]',
+        },
+      },
+      htmltransform: {
+        enable: true,
+        // 设置成 false 表示 不去除 * 相关的选择器区块
+        // 假如开启这个配置，它会把 tailwindcss 整个 css var 的区域块直接去除掉
+        config: {
+          removeCursorStyle: false,
         },
       },
     },
@@ -101,7 +114,7 @@ const config = {
 
 module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
-    return merge({}, config, require('./dev'));
+    return merge({}, config, require('./dev').default);
   }
-  return merge({}, config, require('./prod'));
+  return merge({}, config, require('./prod').default);
 };
